@@ -1,0 +1,35 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31410.357
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CrmMobileApp.Android", "CrmMobileApp\CrmMobileApp.Android\CrmMobileApp.Android.csproj", "{0D4115EA-6156-4AA7-B472-DEFFA2E729E1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CrmMobileApp", "CrmMobileApp\CrmMobileApp\CrmMobileApp.csproj", "{55CFE11F-BA9A-4DC6-8CA8-5AF7B8552447}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0D4115EA-6156-4AA7-B472-DEFFA2E729E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D4115EA-6156-4AA7-B472-DEFFA2E729E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0D4115EA-6156-4AA7-B472-DEFFA2E729E1}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{0D4115EA-6156-4AA7-B472-DEFFA2E729E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0D4115EA-6156-4AA7-B472-DEFFA2E729E1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0D4115EA-6156-4AA7-B472-DEFFA2E729E1}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{55CFE11F-BA9A-4DC6-8CA8-5AF7B8552447}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{55CFE11F-BA9A-4DC6-8CA8-5AF7B8552447}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{55CFE11F-BA9A-4DC6-8CA8-5AF7B8552447}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{55CFE11F-BA9A-4DC6-8CA8-5AF7B8552447}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{55CFE11F-BA9A-4DC6-8CA8-5AF7B8552447}.Release|Any CPU.Build.0 = Release|Any CPU
+		{55CFE11F-BA9A-4DC6-8CA8-5AF7B8552447}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {82562BDE-502B-4A29-A886-33F306ACA624}
+	EndGlobalSection
+EndGlobal

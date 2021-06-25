@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:local="clr-namespace:CrmMobileApp.ViewModel"
+             x:Class="CrmMobileApp.MainPage"
+             NavigationPage.HasNavigationBar="False"
+             Title="ODL CRM">
+    
+    <ContentPage.BindingContext>
+        <local:MainViewModel></local:MainViewModel>
+    </ContentPage.BindingContext>
+    <StackLayout>
+        <Grid>
+            <StackLayout VerticalOptions="Center" BackgroundColor="#154c79" HeightRequest="260" >
+                <Image Source="logo.png"  WidthRequest="160" HeightRequest="160" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" />
+            </StackLayout>
+        </Grid>
+        <StackLayout Padding="30, 70"
+            VerticalOptions="Start">
+            <Label Text="{Binding DisplayName}" HorizontalOptions="Center"/>
+            <Entry Text="{Binding Username}" x:Name="EntryUsername"/>
+            <Label Text="Password:" HorizontalOptions="Center"/>
+            <Entry Text="" x:Name="EntryPassword" IsPassword="True"/>
+        </StackLayout>
+        <StackLayout Padding="30, -10"
+            VerticalOptions="EndAndExpand">
+            <Button Text="Login" TextColor="White" BackgroundColor="#154c79" x:Name="ButtonLogin" VerticalOptions="EndAndExpand" Clicked="ButtonLogin_Clicked"/>
+        </StackLayout>
+        <ActivityIndicator x:Name="LoginActivity" IsRunning="False" VerticalOptions="Center" HorizontalOptions="Center" Color="#154c79"/>
+    </StackLayout>
+</ContentPage>

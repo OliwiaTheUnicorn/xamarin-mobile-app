@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:st="clr-namespace:Plugin.SharedTransitions;assembly=Plugin.SharedTransitions"
+             xmlns:vm="clr-namespace:CrmMobileApp.ViewModel"
+             mc:Ignorable="d" BackgroundColor="#e6ebeb"
+             NavigationPage.HasNavigationBar="False"
+             x:Class="CrmMobileApp.Views.CreateReminder">
+
+    <ContentPage.BindingContext>
+        <vm:ReminderVewModel x:Name="vm"/>
+    </ContentPage.BindingContext>
+    
+    <Grid VerticalOptions="StartAndExpand"
+              HorizontalOptions="StartAndExpand"
+              Margin="0, 0, 0, 20"
+              ColumnSpacing="0"
+              RowSpacing="5">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="5*" />
+            <RowDefinition  Height="0.5*"/>
+        </Grid.RowDefinitions>
+
+        <StackLayout Grid.Row="0" >
+            <StackLayout Orientation="Horizontal">
+                <ImageButton Source="back.png" Margin="20" BackgroundColor="Transparent" HorizontalOptions="Start" VerticalOptions="Start"
+                                     HeightRequest="24" WidthRequest="24" Clicked="BackTapped"/>
+                <Grid WidthRequest="80" Padding="0,10,0,0"  HeightRequest="100" HorizontalOptions="EndAndExpand" VerticalOptions="Start">
+                    <Image Source="reminder.png" st:Transition.Name="WatchImage"/>
+                </Grid>
+            </StackLayout>
+            <StackLayout Margin="20,10">
+                <Label Text="Create Reminder" TextColor="#2D2942" FontSize="25" FontAttributes="Bold"/>
+            </StackLayout>
+        </StackLayout>
+
+        <StackLayout Spacing="20" Margin="20,30" Grid.Row="1" >
+            <ScrollView>
+                <StackLayout >
+                    <Grid RowDefinitions="Auto">
+                        <StackLayout Grid.Row="0">
+                            <Label Text="Full Name:" FontSize="Medium" FontAttributes="Bold"></Label>
+                            <Entry x:Name="entFullName" Placeholder="Enter full name here"></Entry>
+                        </StackLayout>
+                        <StackLayout Grid.Row="1">
+                            <Label Text="Status:" FontSize="Medium" FontAttributes="Bold"></Label>
+                            <Picker x:Name="entStatus" SelectedIndex="0" ItemDisplayBinding="{Binding Name}" Title="Select Status" ItemsSource="{Binding ReminderStatusList}"/>
+                        </StackLayout>
+                        <StackLayout Grid.Row="2">
+                            <Label Text="Date:" FontSize="Medium" FontAttributes="Bold"></Label>
+                            <DatePicker x:Name="entDate" Format="D"/>
+                        </StackLayout>
+                        <StackLayout Grid.Row="3">
+                            <Label Text="Time:" FontSize="Medium" FontAttributes="Bold"></Label>
+                            <TimePicker x:Name="entTime" Format="HH:mm"/>
+                        </StackLayout>
+                        <StackLayout Grid.Row="4">
+                            <Label Text="Lead Id:" FontSize="Medium" FontAttributes="Bold"></Label>
+                            <Entry x:Name="entLead" Placeholder="Enter Lead Id here" Keyboard="Numeric"></Entry>
+                        </StackLayout>
+                        <StackLayout Grid.Row="5">
+                            <Label Text="Notes" FontSize="Medium" FontAttributes="Bold"></Label>
+                            <Entry x:Name="entNotes" Placeholder="Enter notes here"></Entry>
+                        </StackLayout>
+                    </Grid>
+                </StackLayout>
+            </ScrollView>
+        </StackLayout>
+        <StackLayout Orientation="Horizontal" Spacing="30" HorizontalOptions="CenterAndExpand" Margin="0,0,0,10"  Grid.Row="2">
+            <Button WidthRequest="195" HeightRequest="46" CornerRadius="32" HorizontalOptions="CenterAndExpand" VerticalOptions="End" BackgroundColor="#154c79"
+                        Text="Save Reminder" TextColor="White" FontSize="14" x:Name="btnSave" />
+        </StackLayout>
+    </Grid>
+</ContentPage>

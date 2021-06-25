@@ -1,0 +1,134 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:st="clr-namespace:Plugin.SharedTransitions;assembly=Plugin.SharedTransitions"
+             xmlns:vm="clr-namespace:CrmMobileApp.ViewModel"
+             xmlns:dg="clr-namespace:Xamarin.Forms.DataGrid;assembly=Xamarin.Forms.DataGrid"
+             mc:Ignorable="d" BackgroundColor="#e6ebeb"
+             NavigationPage.HasNavigationBar="False"
+             x:Class="CrmMobileApp.Views.DetailsPage">
+
+    <ContentPage.BindingContext>
+        <vm:DetailsViewModel x:Name="vm"/>
+    </ContentPage.BindingContext>
+    
+        <Grid VerticalOptions="StartAndExpand"
+              HorizontalOptions="StartAndExpand"
+              Margin="0, 0, 0, 20"
+              ColumnSpacing="0"
+              RowSpacing="5">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100" />
+            <RowDefinition Height="5*" />
+            <RowDefinition  Height="1*"/>
+        </Grid.RowDefinitions>
+        
+        <ImageButton Source="back.png" Margin="20" BackgroundColor="Transparent" HorizontalOptions="Start" VerticalOptions="Start"
+                             HeightRequest="24" WidthRequest="24" Clicked="BackTapped"/>
+        <Grid WidthRequest="80" Margin="10" HeightRequest="100" HorizontalOptions="End" VerticalOptions="Start">
+            <Image Source="{Binding SelectedOffering.Image}" st:Transition.Name="WatchImage"/>
+        </Grid>
+        <StackLayout Spacing="20" Margin="30,10" Grid.Row="1" >
+
+            <Grid>
+                <StackLayout>
+                    <Label Text="{Binding SelectedOffering.Name}" TextColor="#2D2942" FontSize="25" FontAttributes="Bold"/>
+                </StackLayout>
+                <Label Text="{Binding SelectedOffering.Total, StringFormat='Total: {0}'}" TextColor="#2D2942" FontSize="20" 
+                       FontAttributes="Bold" HorizontalOptions="End"/>
+            </Grid>
+        </StackLayout>
+
+        <StackLayout Orientation="Horizontal" Spacing="30" HorizontalOptions="CenterAndExpand" Margin="10,80,10,0"  Grid.Row="1" >
+            <!-- Place new controls here -->
+            <RefreshView IsRefreshing="{Binding IsRefreshing}" Command="{Binding RefreshCommand}">
+                <ScrollView Orientation="Both">
+                    <dg:DataGrid ItemsSource="{Binding Contracts}" SelectionEnabled="True" SelectedItem="{Binding SelectedContract}" RowHeight="70" HeaderHeight="50"  
+                        BorderColor="#CCCCCC" HeaderBackground="#E0E6F8" PullToRefreshCommand="{Binding RefreshCommand}" IsRefreshing="{Binding IsRefreshing}" ActiveRowColor="#8899AA">
+                        <x:Arguments>
+                            <ListViewCachingStrategy>RetainElement</ListViewCachingStrategy>
+                        </x:Arguments>
+                        <dg:DataGrid.HeaderFontSize>
+                            <OnIdiom x:TypeArguments="x:Double">
+                                <OnIdiom.Tablet>15</OnIdiom.Tablet>
+                                <OnIdiom.Phone>12</OnIdiom.Phone>
+                            </OnIdiom>
+                        </dg:DataGrid.HeaderFontSize>
+                        <dg:DataGrid.Columns>
+                            <dg:DataGridColumn Title="ID" PropertyName="Id" Width="0.3*">
+                                <dg:DataGridColumn.FormattedTitle>
+                                    <FormattedString>
+                                        <Span Text="ID" FontSize="13" TextColor="Black" FontAttributes="Bold"/>
+                                    </FormattedString>
+                                </dg:DataGridColumn.FormattedTitle>
+                            </dg:DataGridColumn>
+                            <dg:DataGridColumn PropertyName="Name" Width=".5*">
+                                <dg:DataGridColumn.FormattedTitle>
+                                    <FormattedString>
+                                        <Span Text="Name" FontSize="13" TextColor="Black" FontAttributes="Bold"/>
+                                    </FormattedString>
+                                </dg:DataGridColumn.FormattedTitle>
+                            </dg:DataGridColumn>
+                            <dg:DataGridColumn Title="Author" PropertyName="Author" Width="0.3*">
+                                <dg:DataGridColumn.FormattedTitle>
+                                    <FormattedString>
+                                        <Span Text="Author" FontSize="13" TextColor="Black" FontAttributes="Bold"/>
+                                    </FormattedString>
+                                </dg:DataGridColumn.FormattedTitle>
+                            </dg:DataGridColumn>
+                            <dg:DataGridColumn Title="Lead Id" PropertyName="LeadId" Width="0.3*">
+                                <dg:DataGridColumn.FormattedTitle>
+                                    <FormattedString>
+                                        <Span Text="Lead Id" FontSize="13" TextColor="Black" FontAttributes="Bold"/>
+                                    </FormattedString>
+                                </dg:DataGridColumn.FormattedTitle>
+                            </dg:DataGridColumn>
+                            <dg:DataGridColumn Title="Contract Value" PropertyName="ContractValue" Width=".6*">
+                                <dg:DataGridColumn.FormattedTitle>
+                                    <FormattedString>
+                                        <Span Text="Contract Value" FontSize="13" TextColor="Black" FontAttributes="Bold"/>
+                                    </FormattedString>
+                                </dg:DataGridColumn.FormattedTitle>
+                            </dg:DataGridColumn>
+                            <dg:DataGridColumn Title="Notes" PropertyName="Notes" Width="1.2*">
+                                <dg:DataGridColumn.FormattedTitle>
+                                    <FormattedString>
+                                        <Span Text="Notes" FontSize="13" TextColor="Black" FontAttributes="Bold"/>
+                                    </FormattedString>
+                                </dg:DataGridColumn.FormattedTitle>
+                            </dg:DataGridColumn>
+                            <dg:DataGridColumn Title="Created At" PropertyName="CreatedAt" Width="1*">
+                                <dg:DataGridColumn.FormattedTitle>
+                                    <FormattedString>
+                                        <Span Text="Created At" FontSize="13" TextColor="Black" FontAttributes="Bold"/>
+                                    </FormattedString>
+                                </dg:DataGridColumn.FormattedTitle>
+                            </dg:DataGridColumn>
+                            <dg:DataGridColumn Title="Updated At" PropertyName="UpdatedAt" Width="1*">
+                                <dg:DataGridColumn.FormattedTitle>
+                                    <FormattedString>
+                                        <Span Text="Updated At" FontSize="13" TextColor="Black" FontAttributes="Bold"/>
+                                    </FormattedString>
+                                </dg:DataGridColumn.FormattedTitle>
+                            </dg:DataGridColumn>
+                        </dg:DataGrid.Columns>
+                        <dg:DataGrid.RowsBackgroundColorPalette>
+                            <dg:PaletteCollection>
+                                <Color>#F2F2F2</Color>
+                                <Color>#FFFFFF</Color>
+                            </dg:PaletteCollection>
+                        </dg:DataGrid.RowsBackgroundColorPalette>
+                    </dg:DataGrid>
+                </ScrollView>
+            </RefreshView>
+        </StackLayout>
+
+        <StackLayout Orientation="Horizontal" Spacing="30" HorizontalOptions="CenterAndExpand" Margin="0,0,0,10"  Grid.Row="2">
+            <Button WidthRequest="195" HeightRequest="46" CornerRadius="32" HorizontalOptions="CenterAndExpand" VerticalOptions="End" BackgroundColor="#154c79"
+                        Text="Create Contract" TextColor="White" FontSize="14" x:Name="btnSave"/>
+        </StackLayout>
+    </Grid>
+</ContentPage>

@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:st="clr-namespace:Plugin.SharedTransitions;assembly=Plugin.SharedTransitions"
+             xmlns:vm="clr-namespace:CrmMobileApp.ViewModel"
+             mc:Ignorable="d" BackgroundColor="#e6ebeb"
+             NavigationPage.HasNavigationBar="False"
+             x:Class="CrmMobileApp.Views.Dashboard">
+
+    <ContentPage.BindingContext>
+        <vm:MainViewModel x:Name="vm"/>
+    </ContentPage.BindingContext>
+
+    <Grid>
+        <RefreshView IsRefreshing="{Binding IsRefreshing}" Command="{Binding RefreshCommand}">
+            <Grid RowDefinitions="Auto, Auto, Auto, *" RowSpacing="30" Padding="30">
+                <Grid>
+                    <ImageButton Source="menu.png" BackgroundColor="Transparent" HorizontalOptions="Start" VerticalOptions="Center" 
+                             HeightRequest="24" WidthRequest="24" Clicked="MenuTapped"/>
+                    <Image Source="logo.png"  WidthRequest="100" HeightRequest="100" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" />
+                </Grid>
+
+                <Grid Grid.Row="2" ColumnDefinitions="*, Auto" ColumnSpacing="15">
+                    <Label Text="{Binding HelloName}" TextColor="#2D2942" FontSize="20" FontAttributes="Bold" VerticalOptions="Center" />
+                </Grid>
+                <CollectionView Grid.Row="3" SelectionMode="Single" ItemsSource="{Binding CrmOfferings}"
+                            SelectedItem="{Binding SelectedOffering}" SelectionChanged="OfferingSelected">
+                    <CollectionView.ItemsLayout>
+                        <GridItemsLayout Orientation="Vertical" Span="2"/>
+                    </CollectionView.ItemsLayout>
+                    <CollectionView.EmptyView>
+                        <Label Text="No Item found." TextColor="Gray" HorizontalOptions="Center" VerticalOptions="Center"/>
+                    </CollectionView.EmptyView>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid RowDefinitions="*, 2.5*" HeightRequest="190" BackgroundColor="White" Padding="15">
+                                <Grid.Clip>
+                                    <PathGeometry Figures="M20 96.5596C20 92.4719 22.0807 88.6655 25.5215 86.4586L146.521 8.85176C154.508 3.72922 165 9.46434 165 18.9527V185C165 191.627 159.627 197 153 197H32C25.3726 197 20 191.627 20 185V96.5596Z"/>
+                                </Grid.Clip>
+                                <StackLayout HorizontalOptions="End" VerticalOptions="Start" Padding="0,25,0,0">
+                                    <Image Source="{Binding Image}" WidthRequest="45" HorizontalOptions="Start"
+                                       st:Transition.Name="WatchImage"
+                                       st:Transition.Group="{Binding Name}"/>
+                                </StackLayout>
+                                <StackLayout Grid.Row="1" Orientation="Horizontal" VerticalOptions="FillAndExpand" 
+                                     HorizontalOptions="FillAndExpand" Padding="10,0,0,0">
+                                    <StackLayout Spacing="5" VerticalOptions="CenterAndExpand">
+                                        <Label Text="{Binding Name}" TextColor="#2D2942" FontSize="14"/>
+                                        <Label Text="{Binding Total, StringFormat='Total: {0}'}" TextColor="#2D2942" FontSize="14" 
+                                           FontAttributes="Bold"/>
+                                    </StackLayout>
+                                </StackLayout>
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </Grid>
+        </RefreshView>
+        <Grid x:Name="MenuGrid" IsVisible="False">
+            <BoxView x:Name="MenuOverlay" BackgroundColor="Black" Opacity="0.35">
+                <BoxView.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OverlayTapped"/>
+                </BoxView.GestureRecognizers>
+            </BoxView>
+            <Grid x:Name="MenuView" WidthRequest="260" BackgroundColor="#154c79" 
+                  HorizontalOptions="Start" TranslationX="-260">
+                <Grid.Clip>
+                    <PathGeometry Figures="M0,0V511.043H140.714l86.992-116.012V0Z"/>
+                </Grid.Clip>
+                <StackLayout Margin="30,100" Spacing="20" BindableLayout.ItemsSource="{Binding MenuList}">
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout Orientation="Horizontal" Spacing="20">
+                                <Grid Grid.Row="2" HorizontalOptions="Start" VerticalOptions="Start"
+                                      HeightRequest="46" WidthRequest="46">
+                                    <Ellipse WidthRequest="46" HeightRequest="46" Fill="White" Opacity="0.5"/>
+                                    <Image Source="{Binding Icon}" WidthRequest="22" HeightRequest="22"
+                                            HorizontalOptions="Center" VerticalOptions="Center" />
+                                </Grid>
+                                <Label Text="{Binding Name}" TextColor="White" FontSize="16" VerticalOptions="Center"
+                                        FontFamily="NormalFont">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="Logout" />
+                                    </Label.GestureRecognizers>
+                                </Label>
+                            </StackLayout>
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </StackLayout>
+            </Grid>
+        </Grid>
+    </Grid>
+</ContentPage>
